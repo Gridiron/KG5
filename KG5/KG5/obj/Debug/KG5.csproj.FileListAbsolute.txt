@@ -1,0 +1,10 @@
+D:\Studying\3 курс\6 семестр\KG5\KG5\KG5\bin\Debug\KG5.exe.config
+D:\Studying\3 курс\6 семестр\KG5\KG5\KG5\bin\Debug\KG5.exe
+D:\Studying\3 курс\6 семестр\KG5\KG5\KG5\bin\Debug\KG5.pdb
+D:\Studying\3 курс\6 семестр\KG5\KG5\KG5\obj\Debug\KG5.csprojAssemblyReference.cache
+D:\Studying\3 курс\6 семестр\KG5\KG5\KG5\obj\Debug\KG5.Form1.resources
+D:\Studying\3 курс\6 семестр\KG5\KG5\KG5\obj\Debug\KG5.Properties.Resources.resources
+D:\Studying\3 курс\6 семестр\KG5\KG5\KG5\obj\Debug\KG5.csproj.GenerateResource.cache
+D:\Studying\3 курс\6 семестр\KG5\KG5\KG5\obj\Debug\KG5.csproj.CoreCompileInputs.cache
+D:\Studying\3 курс\6 семестр\KG5\KG5\KG5\obj\Debug\KG5.exe
+D:\Studying\3 курс\6 семестр\KG5\KG5\KG5\obj\Debug\KG5.pdb
