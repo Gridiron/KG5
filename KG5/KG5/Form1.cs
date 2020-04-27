@@ -241,7 +241,6 @@ namespace KG5
             }
             pictureBox1.Image = _sBitmap;
         }
-        // Function to take dot product 
         private static int dot(System.Drawing.Point p0, System.Drawing.Point p1)
         {
             return p0.X * p1.X + p0.Y * p1.Y;
@@ -266,59 +265,42 @@ namespace KG5
             return minimum;
         }
 
-
-        // Cyrus Beck function, returns a pair of values 
-        // that are then displayed as a line 
         System.Drawing.Point[] CyrusBeck(List<System.Drawing.Point> vertices, List<System.Drawing.Point> line, int n)
         {
-
-            // Temporary holder value that will be returned 
             System.Drawing.Point[] newPair = new System.Drawing.Point[2];
 
-            // Normals initialized dynamically(can do it statically also, doesn't matter) 
             System.Drawing.Point[] normal = new System.Drawing.Point[n];
 
-            // Calculating the normals 
+
             for (int i = 0; i < n; i++)
             {
                 normal[i] = new System.Drawing.Point(vertices[i].Y - vertices[(i + 1) % n].Y, vertices[(i + 1) % n].X - vertices[i].X);
             }
 
-            // Calculating P1 - P0 
             System.Drawing.Point P1_P0 = new System.Drawing.Point(line[1].X - line[0].X, line[1].Y - line[0].Y);
 
-            // Initializing all values of P0 - PEi 
+
             System.Drawing.Point[] P0_PEi = new System.Drawing.Point[n];
 
-            // Calculating the values of P0 - PEi for all edges 
             for (int i = 0; i < n; i++)
             {
                 P0_PEi[i] = new System.Drawing.Point(vertices[i].X - line[0].X, vertices[i].Y - line[0].Y);
-                // Calculating PEi - P0, so that the 
-                // denominator won't have to multiply by -1 
 
-                // while calculating 't' 
             }
 
             int[] numerator = new int[n], denominator = new int[n];
 
-            // Calculating the numerator and denominators 
-            // using the dot function 
             for (int i = 0; i < n; i++)
             {
                 numerator[i] = dot(normal[i], P0_PEi[i]);
                 denominator[i] = dot(normal[i], P1_P0);
             }
 
-            // Initializing the 't' values dynamically 
             double[] t = new double[n];
 
-            // Making two vectors called 't entering' 
-            // and 't leaving' to group the 't's 
-            // according to their denominators 
+
             List<double> tE = new List<double>(), tL = new List<double>();
 
-            // Calculating 't' and grouping them accordingly 
             for (int i = 0; i < n; i++)
             {
 
@@ -330,21 +312,14 @@ namespace KG5
                     tL.Add(t[i]);
             }
 
-            // Initializing the final two values of 't' 
             double[] temp = new double[2];
 
-            // Taking the max of all 'tE' and 0, so pushing 0 
             tE.Add(0.0f);
             temp[0] = max(tE);
 
-            // Taking the min of all 'tL' and 1, so pushing 1 
             tL.Add(1.0f);
             temp[1] = min(tL);
 
-            // Entering 't' value cannot be 
-            // greater than exiting 't' value, 
-            // hence, this is the case when the line 
-            // is completely outside 
             if (temp[0] > temp[1])
             {
                 newPair[0] = new System.Drawing.Point(-1, -1);
@@ -355,64 +330,8 @@ namespace KG5
 
             newPair[0] = new System.Drawing.Point((int)((float)line[0].X + (float)P1_P0.X * (float)temp[0]), (int)((float)line[0].Y + (float)P1_P0.Y * (float)temp[0]));
             newPair[1] = new System.Drawing.Point((int)((float)line[0].X + (float)P1_P0.X * (float)temp[1]),(int)((float)line[0].Y + (float)P1_P0.Y * (float)temp[1]));
-                // Calculating the coordinates in terms of x and y 
 
             return newPair;
         }
-
-        //        // Driver code 
-        //        int main()
-        //        {
-
-        //            // Setting up a window and loop 
-        //            // and the vertices of the polygon and line 
-        //            RenderWindow window(VideoMode(500, 500), "Cyrus Beck");
-        //            pair<int, int> vertices[]
-        //                = { make_pair(200, 50),
-        //            make_pair(250, 100),
-        //            make_pair(200, 150),
-        //            make_pair(100, 150),
-        //            make_pair(50, 100),
-        //            make_pair(100, 50) };
-
-        //            // Make sure that the vertices 
-        //            // are put in a clockwise order 
-        //            int n = sizeof(vertices) / sizeof(vertices[0]);
-        //            pair<int, int> line[] = { make_pair(10, 10), make_pair(450, 200) };
-        //            pair<int, int>* temp1 = CyrusBeck(vertices, line, n);
-        //            pair<int, int> temp2[2];
-        //            temp2[0] = line[0];
-        //            temp2[1] = line[1];
-
-        //            // To allow clipping and unclipping 
-        //            // of the line by just pressing a key 
-        //            bool trigger = false;
-        //            while (window.isOpen())
-        //            {
-        //                window.clear();
-        //                Event event; 
-        //        if (window.pollEvent(event)) {
-        //            if (event.type == Event::Closed) 
-        //                window.close(); 
-        //            if (event.type == Event::KeyPressed) 
-        //                trigger = !trigger;
-        //        }
-        //        drawPolygon(&window, vertices, n); 
-
-        //        // Using the trigger value to clip 
-        //        // and unclip a line 
-        //        if (trigger) { 
-        //            line[0] = temp1[0]; 
-        //            line[1] = temp1[1]; 
-        //        } 
-        //        else { 
-        //            line[0] = temp2[0]; 
-        //            line[1] = temp2[1]; 
-        //        }
-        //drawline(&window, line[0], line[1]);
-        //window.display(); 
-        //    } 
-        //    return 0; 
-        //} 
         }
     }
